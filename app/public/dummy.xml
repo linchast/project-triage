@@ -1,0 +1,15 @@
+<?doctype xml>
+<patients>
+
+    <patient firstName= "Tom" lastName = "Gregory">
+      <priority> High </priority>
+
+    </patient>
+
+    <patient priority = "High">
+      <name>
+          <first> Tom </first>
+          <last> Gregory </last>
+      </name>
+    </patient>
+  </patients>
