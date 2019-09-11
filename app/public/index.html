@@ -33,7 +33,9 @@
         Registration form
       </div>
       <div id="patientWaitingApp" class="col-md-4 queueView">
-        <div class="patientWaiting patient" v-for="patient in patients">
+        <div class="patientWaiting patient"
+        :class="patient.priority + 'Priority'"
+         v-for="patient in patients">
           arrival time<br>
           <span class="patientName">{{ patient.lastName }}</span>
           <span class="patientName">{{ patient.firstName }}</span><br>
@@ -44,37 +46,7 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script>
-    var app = new Vue({
-      el: '#patientWaitingApp',
-      data: {
-        patients: [
-          {
-            "patientGuid": "01",
-            "firstName": "Jeff",
-            "lastName": "Black",
-            "dob": "2012-08-01",
-            "sexAtBirth": "M"
-          },
+  <script src="js/waiting.app.js"> </script>
 
-          {
-            "patientGuid": "02",
-            "firstName": "Lindsey",
-            "lastName": "Chastain",
-            "dob": "1997-04-04",
-            "sexAtBirth": "F"
-          },
-
-          {
-            "patientGuid": "03",
-            "firstName": "Ashley",
-            "lastName": "Chastain",
-            "dob": "1999-07-11",
-            "sexAtBirth": "F"
-          }
-        ]
-      }
-    })
-  </script>
 </body>
 </html>
