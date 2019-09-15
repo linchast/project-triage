@@ -33,14 +33,11 @@
         Registration form
       </div>
       <div id="patientWaitingApp" class="col-md-4 queueView">
-        <div class="patientWaiting patient"
-        :class="patient.priority +'Priority'"
-         v-for="patient in patients">
-          arrival time<br>
-          <span class="patientName">{{ patient.lastName }}</span>
-          <span class="patientName">{{ patient.firstName }}</span><br>
-          <span>{{ patient.sexAtBirth }}</span>
-          <span>{{ patient.dob }}</span>
+        <div class="patientWaiting patient">
+          Arrival Time<br>
+          <span class="patientName">{{ person.name.last }}</span>
+          <span class="patientName">{{ person.name.first }}</span><br>
+          <span>{{ person.dob.date }}</span>
         </div>
       </div>
     </div>
