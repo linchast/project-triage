@@ -30,72 +30,46 @@
   <div class="container">
     <div class="row">
       <div id="mainContent" class="col">
-        <h1>Registration Form </h1>
-        <div id= "patientRecordApp">
+        <div id="patientRecordApp">
           <form>
-            <div class="form-group">
-              <label for="examplepatientGuid1">Patient Guid</label>
-              <input type="text" class="form-control" id="examplepatientGuid1" placeholder="Enter Guid">
-            </div>
-            <div class="form-group">
-              <label for="examplefirstName1">First Name</label>
-              <input type="text" class="form-control" id="examplefirstName1" placeholder="Enter First Name">
-            </div>
-            <div class="form-group">
-              <label for="examplelastName1">Last Name</label>
-              <input type="text" class="form-control" id="examplelastName1" placeholder="Enter Last Name">
-            </div>
-            <div class="form-group">
-              <label for="exampledob1">DOB</label>
-              <input type="date" class="form-control" id="exampledob1" placeholder="Enter DOB">
-            </div>
-            <div class="form-group">
-            <label for="examplesexAtBirth1">Sex at Birth</label>
-            <select class="form-control" id="examplesexAtBirth1">
-              <option>F</option>
-              <option>M</option>
-              <option>Other</option>
-            </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
           </form>
-          <table>
+          <table class="table table-sm table-hover">
             <thead>
-                <th> First </th>
-                <th> Last </th>
-                <th> DOB </th>
-                <th> SAB </th>
+              <th>First</th>
+              <th>Last</th>
+              <th>DOB</th>
+              <th>SAB</th>
             </thead>
             <tbody>
-              <tr v-for = "p in patients">
-                <td> {{ p.firstName }} </td>
-                <td> {{ p.lastName }} </td>
-                <td> {{ p.dob }} </td>
-                <td> {{ p.Sex }} </td>
+              <tr v-for="p in patients">
+                <td>{{ p.firstName }}</td>
+                <td>{{ p.lastName }}</td>
+                <td>{{ p.dob }}</td>
+                <td>{{ p.sexAtBirth }}</td>
+              </tr>
             </tbody>
-
-
           </table>
         </div>
-
         <div id="patientTriageApp">
         </div>
-
-        </div>
-
       </div>
       <div id="patientWaitingApp" class="col-md-4 queueView">
-        <div class="patientWaiting patient">
-          Arrival Time<br>
-          <span class="patientName">{{ person.name.last }}</span>
-          <span class="patientName">{{ person.name.first }}</span><br>
-          <span>{{ person.dob.date }}</span>
+        <div class="patientWaiting patient"
+        :class="patient.priority +'Priority'"
+         v-for="patient in patients">
+          arrival time<br>
+          <span class="patientName">{{ patient.lastName }}</span>
+          <span class="patientName">{{ patient.firstName }}</span><br>
+          <span>{{ patient.sexAtBirth }}</span>
+          <span>{{ patient.dob }}</span>
         </div>
       </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="js/waiting.app.js"></script>
-    <script src="js/record.app.js"></script>
+  <script src="js/record.app.js"></script>
+
 </body>
 </html>
