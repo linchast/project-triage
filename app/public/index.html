@@ -68,7 +68,7 @@
               <th>SAB</th>
             </thead>
             <tbody>
-              <tr v-for="p in patients" @click= > //click handler not a submit handler
+              <tr v-for="p in patients" @click= "handleRecordClick"> //click handler not a submit handler
                 <td>{{ p.firstName }}</td>
                 <td>{{ p.lastName }}</td>
                 <td>{{ p.dob }}</td>
