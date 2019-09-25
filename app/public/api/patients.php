@@ -31,6 +31,7 @@ $json = json_encode($patients, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 //tells the browser what kind of thing it is about to send
+//must send out header before we send out content 
 header('Content-Type: application/json');
 //print out and send it to the browser
 echo $json;
