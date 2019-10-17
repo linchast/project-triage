@@ -1,38 +1,49 @@
-var patientRecordApp = new Vue({
-  el: '#patientRecordApp',
+var patientRecordsApp = new Vue({
+  el: '#patientRecordsApp',
   data: {
     patients: [],
-    formPatient: {
-      firstName: '',
-      lastName: '',
-      dob: '',
-      sexAtBirth: ''
+    recordPatient: {},
+    filter: {
+      sab: ''
     }
   },
   methods: {
     fetchPatients() {
-      fetch('dummy.php')
+      fetch('api/records/')
       .then(response => response.json())
-      .then(json => { patientRecordApp.patients = json })
+      .then(json => { patientRecordsApp.patients = json })
     },
-    handleCreateRecord(event) {
-      //TODO: Post data to API
-      //fetch(url, {method: 'post', data: this.formPatient})
-      //.then(...)
-      this.patients.push(this.formPatient); //take object and add to table
-      this.formPatient = { //creates a new instance of the form
+    handleSubmit(event) {
+      fetch('api/records/post.php', {
+        method:'POST',
+        body: JSON.stringify(this.recordPatient),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      })
+      .then( response => response.json() )
+      .then( json => { patientRecordsApp.patients.push( json[0] ) })
+      .catch( err => {
+        console.error('RECORD POST ERROR:');
+        console.error(err);
+     });
+
+      this.handleReset();
+    },
+    handleReset() {
+      this.recordPatient = {
         firstName: '',
         lastName: '',
         dob: '',
         sexAtBirth: ''
-        }
-      },
-      handleRecordClick(patient) {
-        //TODO: pass this data to another Vue App
-        console.log(patient);
       }
-  },
+    },
+    handleRowClick(patient) {
+      patientTriageApp.patient = patient;
+    }
+  }, // end methods
   created() {
+    this.handleReset();
     this.fetchPatients();
   }
 });
